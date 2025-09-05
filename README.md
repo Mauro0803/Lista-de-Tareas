@@ -83,10 +83,10 @@ Consulta los cambios por versión en CHANGELOG.md
 Sugerencias y PRs son bienvenidos. Para cambios grandes, abre primero un issue para discutir la propuesta.
 
 ## Autor
-Mauricio Bolívar A.
-🌐 GitHub: Mauro0803
-📧 mauricio0803@hotmail.com
+- Mauricio Bolívar A.
+- 🌐 GitHub: Mauro0803
+- 📧 mauricio0803@hotmail.com
 
 ## Licencia
-Este proyecto puede usarse con fines educativos.
-(Opcional) Puedes agregar una licencia como MIT si lo deseas.
+- Este proyecto puede usarse con fines educativos.
+- (Opcional) Puedes agregar una licencia como MIT si lo deseas.
