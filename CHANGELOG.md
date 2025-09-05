@@ -5,12 +5,25 @@ El formato se inspira en **Keep a Changelog** y el proyecto sigue **Semantic Ver
 
 ## [Unreleased]
 ### Planeado
-- Tachado visual del texto cuando la tarea esté completada.
-- Ordenar: no completadas arriba, completadas abajo.
 - Editar título de una tarea al tocarla.
 - Divider entre ítems y mejoras de UI.
 - (Opcional) Migrar persistencia a Room.
 - (Opcional) Tests instrumentados básicos.
+
+
+---
+## [1.1.0] - 2025-09-05
+### Added
+- Tachado y atenuado del título al marcar tareas como completadas.
+- Orden automático: incompletas arriba; dentro de cada grupo, orden alfabético por título.
+
+### Changed
+- `TaskAdapter`: aplica estilo del título en `onBindViewHolder` y tras cambios del `CheckBox`.
+- `MainActivity`: ordena al **agregar** y al **cambiar estado** de una tarea.
+
+### Chores
+- Commit sugerido: **feat(ui,order): tachado + orden automático (incompletas arriba)**
+- Docs: README actualizado con nuevas funcionalidades.
 
 ---
 

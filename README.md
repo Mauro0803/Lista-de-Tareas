@@ -8,11 +8,13 @@ App Android (Java) para gestionar una lista de tareas: **agregar**, **marcar com
 </p>
 
 ## Funcionalidades
-- ➕ Agregar tareas desde un **FloatingActionButton** con `AlertDialog`.
-- ☑️ Marcar/Desmarcar tareas como completadas (checkbox por ítem).
+- ➕ Agregar tareas desde un **FAB** con `AlertDialog`.
+- ☑️ Marcar/Desmarcar como completadas (checkbox).
 - 🗑️ Eliminar tareas individualmente.
-- 💾 **Persistencia**: guarda y restaura tareas y su estado con `SharedPreferences`.
-- 📜 Lista renderizada con **RecyclerView** + `LinearLayoutManager`.
+- ✍️ **Tachado y atenuado** del título cuando la tarea está completada.
+- 🔀 **Orden automático**: incompletas arriba; dentro de cada grupo, orden alfabético por título.
+- 💾 Persistencia con `SharedPreferences` (JSON).
+- 📜 Lista con **RecyclerView** + `LinearLayoutManager`.
 
 ## Tecnologías y librerías
 - **Android Studio** (Java)
