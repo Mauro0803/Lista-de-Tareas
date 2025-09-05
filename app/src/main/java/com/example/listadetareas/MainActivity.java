@@ -17,6 +17,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import java.util.Collections;
+import java.util.Comparator;
+
 
 public class MainActivity extends AppCompatActivity implements TaskAdapter.TaskCallbacks {
 
@@ -47,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.TaskC
         adapter = new TaskAdapter(tareas, this);
         rvTareas.setAdapter(adapter);
 
+        // Ordena lo cargado (si existía algo persistido)
+        ordenarYRefrescar();
+
         // Conecta el FAB a un diálogo
         fabAgregar.setOnClickListener(v -> mostrarDialogoAgregar());
 
@@ -64,13 +70,19 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.TaskC
                 .setPositiveButton("Agregar", (dialog, which) -> {
                     String titulo = input.getText().toString().trim();
                     if (!titulo.isEmpty()) {
-                        // Agregar a la lista y notificar al adapter
-                        tareas.add(new Task(titulo, false));
-                        adapter.notifyItemInserted(tareas.size() - 1);
-                        rvTareas.smoothScrollToPosition(tareas.size() - 1);
+                        Task nueva = new Task(titulo, false);
+                        tareas.add(nueva);
                         guardarTareas();
+                        ordenarYRefrescar();
+
+                        // Lleva la lista hasta la nueva tarea (índice tras ordenar)
+                        int idx = tareas.indexOf(nueva); // funciona por referencia
+                        if (idx >= 0) {
+                            rvTareas.smoothScrollToPosition(idx);
+                        }
                     }
                 })
+
                 .setNegativeButton("Cancelar", null)
                 .show();
     }
@@ -80,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.TaskC
     public void onTaskCheckedChanged(int position, boolean isChecked) {
         tareas.get(position).setDone(isChecked);
         guardarTareas();
+        ordenarYRefrescar(); // <- reordena tras cambiar el estado
     }
 
     @Override
@@ -120,4 +133,19 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.TaskC
             e.printStackTrace();
         }
     }
+
+    private void ordenarYRefrescar() {
+        // incompletas (done=false) antes que completadas (done=true)
+        Collections.sort(tareas, new Comparator<Task>() {
+            @Override
+            public int compare(Task t1, Task t2) {
+                int byDone = Boolean.compare(t1.isDone(), t2.isDone()); // false < true
+                if (byDone != 0) return byDone;
+                // secundario: alfabético por título (ignora mayúsculas)
+                return t1.getTitle().compareToIgnoreCase(t2.getTitle());
+            }
+        });
+        adapter.notifyDataSetChanged();
+    }
+
 }
