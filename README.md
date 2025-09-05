@@ -35,27 +35,28 @@ App Android (Java) para gestionar una lista de tareas: **agregar**, **marcar com
 4. Ejecutar en un emulador o en un dispositivo.
 Si usas un dispositivo físico, habilita Opciones de desarrollador y Depuración USB.
 
-<details> <summary><strong>Estructura del proyecto</strong></summary>
+## Estructura (resumen)
+```txt
 app/
- └─ src/
-    └─ main/
-       ├─ java/com/example/listadetareas/
-       │   ├─ MainActivity.java
-       │   ├─ Task.java
-       │   └─ TaskAdapter.java
-       └─ res/
-           ├─ layout/
-           │   ├─ activity_main.xml
-           │   └─ item_tarea.xml
-           └─ values/
+└── src/
+    └── main/
+        ├── java/com/example/listadetareas/
+        │   ├── MainActivity.java
+        │   ├── Task.java
+        │   └── TaskAdapter.java
+        └── res/
+            ├── layout/
+            │   ├── activity_main.xml
+            │   └── item_tarea.xml
+            └── values/
 screenshots/
- ├─ pantalla_lista.png
- ├─ dialogo_agregar.png
- └─ tareas_completadas.png
+├── pantalla_lista.png
+├── dialogo_agregar.png
+└── tareas_completadas.png
 CHANGELOG.md
 README.md
 
-</details> <details> <summary><strong>Uso</strong></summary>
+## Uso
 • Toca + para agregar una nueva tarea.
 • Marca el checkbox para indicar que una tarea está completada.
 • Presiona el botón 🗑️ de una fila para eliminarla.
