@@ -10,6 +10,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
+import androidx.appcompat.app.AlertDialog;
+
+import android.text.InputType;
+import android.widget.EditText;
+
+
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rvTareas;
@@ -39,7 +45,31 @@ public class MainActivity extends AppCompatActivity {
         adapter = new TaskAdapter(tareas);
         rvTareas.setAdapter(adapter);
 
-        // El FAB por ahora no hace nada (lo conectamos en la Parte 3)
-        // fabAgregar.setOnClickListener(v -> { ... });
+        // Conecta el FAB a un diálogo
+        fabAgregar.setOnClickListener(v -> mostrarDialogoAgregar());
+
     }
+
+    // Metodo para mostrar el diálogo y agregar la tarea
+    private void mostrarDialogoAgregar() {
+        final EditText input = new EditText(this);
+        input.setHint("Ej: Comprar pan");
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+
+        new AlertDialog.Builder(this)
+                .setTitle("Nueva tarea")
+                .setView(input)
+                .setPositiveButton("Agregar", (dialog, which) -> {
+                    String titulo = input.getText().toString().trim();
+                    if (!titulo.isEmpty()) {
+                        // Agregar a la lista y notificar al adapter
+                        tareas.add(new Task(titulo, false));
+                        adapter.notifyItemInserted(tareas.size() - 1);
+                        rvTareas.smoothScrollToPosition(tareas.size() - 1);
+                    }
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
+    }
+
 }
