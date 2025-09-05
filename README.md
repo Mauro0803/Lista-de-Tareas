@@ -55,7 +55,7 @@ screenshots/
 └── tareas_completadas.png
 CHANGELOG.md
 README.md
-
+```
 ## Uso
 • Toca + para agregar una nueva tarea.
 • Marca el checkbox para indicar que una tarea está completada.
