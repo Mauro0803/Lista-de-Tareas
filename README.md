@@ -57,27 +57,27 @@ CHANGELOG.md
 README.md
 ```
 ## Uso
-• Toca + para agregar una nueva tarea.
-• Marca el checkbox para indicar que una tarea está completada.
-• Presiona el botón 🗑️ de una fila para eliminarla.
-• Cierra y abre la app: las tareas y su estado permanecen.
+- Toca + para agregar una nueva tarea.
+- Marca el checkbox para indicar que una tarea está completada.
+- Presiona el botón 🗑️ de una fila para eliminarla.
+- Cierra y abre la app: las tareas y su estado permanecen.
 
 ## Roadmap (próximas mejoras)
-• Persistencia con SharedPreferences ✅
-• Tachado visual del texto cuando la tarea esté completada.
-• Ordenar: no completadas arriba, completadas abajo.
-• Editar el título de una tarea al tocarla.
-• Divider y mejoras de UI.
-• (Opcional) Migrar persistencia a Room.
-• (Opcional) Tests instrumentados básicos.
+- Persistencia con SharedPreferences ✅
+- Tachado visual del texto cuando la tarea esté completada.
+- Ordenar: no completadas arriba, completadas abajo.
+- Editar el título de una tarea al tocarla.
+- Divider y mejoras de UI.
+- (Opcional) Migrar persistencia a Room.
+- (Opcional) Tests instrumentados básicos.
 
 ## Changelog
 Consulta los cambios por versión en CHANGELOG.md
 
-• v0.1.0: UI base (RecyclerView + FAB)
-• v0.2.0: Adapter + datos de prueba
-• v0.3.0: FAB + diálogo para agregar
-• v1.0.0: Checkbox, borrar y persistencia
+- v0.1.0: UI base (RecyclerView + FAB)
+- v0.2.0: Adapter + datos de prueba
+- v0.3.0: FAB + diálogo para agregar
+- v1.0.0: Checkbox, borrar y persistencia
 
 ## Contribuir
 Sugerencias y PRs son bienvenidos. Para cambios grandes, abre primero un issue para discutir la propuesta.
