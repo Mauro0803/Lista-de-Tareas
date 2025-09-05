@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.graphics.Paint;
+
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,13 +40,20 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskVH> {
     public void onBindViewHolder(@NonNull TaskVH holder, int position) {
         Task t = data.get(position);
         holder.tvTitulo.setText(t.getTitle());
+        // Estilo inicial según estado
+        applyDoneStyle(holder.tvTitulo, t.isDone());
+
 
         // Evitar “rebote” del listener al reciclar
         holder.cbDone.setOnCheckedChangeListener(null);
         holder.cbDone.setChecked(t.isDone());
         holder.cbDone.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (callbacks != null) callbacks.onTaskCheckedChanged(holder.getAdapterPosition(), isChecked);
+
+            // ✅ Actualiza el estilo inmediatamente al marcar/desmarcar
+            applyDoneStyle(holder.tvTitulo, isChecked);
         });
+
 
         holder.btnBorrar.setOnClickListener(v -> {
             if (callbacks != null) callbacks.onTaskDelete(holder.getAdapterPosition());
@@ -69,4 +78,15 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskVH> {
             btnBorrar = itemView.findViewById(R.id.btnBorrar);
         }
     }
+
+    private void applyDoneStyle(TextView tv, boolean done) {
+        if (done) {
+            tv.setPaintFlags(tv.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            tv.setAlpha(0.6f);   // opcional: atenuar
+        } else {
+            tv.setPaintFlags(tv.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
+            tv.setAlpha(1.0f);
+        }
+    }
+
 }
